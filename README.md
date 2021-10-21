@@ -7,3 +7,7 @@ Our choice of language for this project is Python. We will also use Django, whic
 
 # Deployment 
 We are planning on deploying and hosting the project for public and client access on Amazon Web Services (more information and link to webstie will be available in the future).
+
+# License
+TODO: Fill out license information
+
