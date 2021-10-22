@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Add our new application
+    'LoveAajKalApp.apps.LoveaajkalappConfig', #This object was created for us in /LoveAajKalApp/apps.py
 ]
 
 MIDDLEWARE = [
