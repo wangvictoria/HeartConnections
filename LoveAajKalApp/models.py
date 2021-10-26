@@ -2,6 +2,8 @@ from django.db import models
 from django.db.models.fields import BooleanField
 
 # Create your models here.
+# Remember to register model in admin.py
+
 class Profile(models.Model):
     id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=30)
