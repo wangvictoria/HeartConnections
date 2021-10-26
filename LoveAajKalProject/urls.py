@@ -27,5 +27,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('LoveAajKalApp/', include('LoveAajKalApp.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('', RedirectView.as_view(url='LoveAajKalAap/', permanent=True)),
+    path('', RedirectView.as_view(url='LoveAajKalApp/', permanent=True)),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
