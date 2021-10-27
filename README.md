@@ -1,6 +1,6 @@
 # LoveAajKal
 
-Kastur Koul
+Sovann Chang, Kastur Koul, Victoria Wang, Kristen Wright
 
 LoveAajKal is a website that will help our client assist in the matchmaking process and allow match seekers (or their friends and family) to find matches for themselves (with her help if they would like)
 
