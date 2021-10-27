@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .forms import ProfileForm
 from django.views.generic.edit import FormView, CreateView, DeleteView, UpdateView
+from .models import Profile
+from django.urls import reverse_lazy
 
 # Create your views here.
 def index(request):
@@ -10,8 +12,8 @@ def index(request):
 
 
 class ProfileFormView(FormView):
-    template_name = 'contact.html'
-    form_class = ContactForm
+    #template_name = 'profile.html'
+    form_class = ProfileForm
     success_url = '/thanks/'
 
     def form_valid(self, form):
@@ -22,14 +24,17 @@ class ProfileFormView(FormView):
 
 class ProfileCreateView(CreateView):
     model = Profile
+    fields = '__all__'
     form = ProfileForm
-    form.save()
+    #form.save()
 
 class ProfileUpdateView(UpdateView):
     model = Profile
+    fields = '__all__'
     form = ProfileForm
-    form.save()
+    #form.save()
 
 class ProfileDeleteView(DeleteView):
     model = Profile
+    fields = '__all__'
     success_url = reverse_lazy('profile-delete')
