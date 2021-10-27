@@ -81,7 +81,7 @@ header, nav, section, article, aside, footer, hgroup {
 html, body {
   font-family: "Raleway", sans-serif;
   font-weight: 400;
-  background-color: #fff;
+  background-color: #FFD6BA;/* #fff;*/
   font-size: 16px;
   -ms-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
@@ -108,7 +108,7 @@ global styles
 */
 html,
 body {
-  background: #fff;
+  background: #FFD6BA;/* #fff;*/
   font-family: "Raleway", sans-serif;
 }
 
@@ -325,7 +325,7 @@ a.main-button-slider {
 }
 
 a.main-button-slider:hover {
-  background-color: #89B0AE /*#8261ee*/;
+  background-color: #3B566E /*#8261ee*/;
 }
 
 a.main-button {
@@ -665,7 +665,7 @@ welcome
   line-height: 54px;
   letter-spacing: 1.4px;
   margin-bottom: 30px;
-  color: #fff;
+  color: #fff;/* #fff;*/
 }
 
 .welcome-area .header-text p {

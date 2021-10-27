@@ -1,40 +1,31 @@
 from django.shortcuts import render
 from .forms import ProfileForm
-from django.views.generic.edit import FormView, CreateView, DeleteView, UpdateView
+#from django.views.generic.edit import FormView, CreateView, DeleteView, UpdateView
 from .models import Profile
 from django.urls import reverse_lazy
 
 # Create your views here.
 def index(request):
     """View function for home page of site."""
-    context = {}
+    context = {'name': None} # initialize context
+
+    context['name'] = 'Victoria' # define name
     return render(request, 'index.html', context)
 
-
-class ProfileFormView(FormView):
-    #template_name = 'profile.html'
-    form_class = ProfileForm
-    success_url = '/thanks/'
-
-    def form_valid(self, form):
-        # This method is called when valid form data has been POSTed.
-        # It should return an HttpResponse.
-        form.send_email()
-        return super().form_valid(form)
-
-class ProfileCreateView(CreateView):
+def CreateProfile(request):
+    form = ProfileForm(request.POST or None)
     model = Profile
-    fields = '__all__'
-    form = ProfileForm
-    #form.save()
+    context = {'form': form}   
+    if request.method == 'POST':
+        if form.is_valid:
+            form.save()
+            name = form.cleaned_data['first_name']
+            print(name)
+        else:
+            form = ProfileForm(request.POST or None)
+    
+    return render(request, 'create_profile.html', context)
 
-class ProfileUpdateView(UpdateView):
-    model = Profile
-    fields = '__all__'
-    form = ProfileForm
-    #form.save()
-
-class ProfileDeleteView(DeleteView):
-    model = Profile
-    fields = '__all__'
-    success_url = reverse_lazy('profile-delete')
+def ProfileDetailedView(request):
+    context = {}#'profile-id': None}
+    return render(request, 'profile_default_view.html', context)
