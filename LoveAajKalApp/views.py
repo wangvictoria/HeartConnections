@@ -12,6 +12,14 @@ def index(request):
     context['name'] = 'Victoria' # define name
     return render(request, 'index.html', context)
 
+def about(request):
+    context = {}
+    return render(request, 'about.html', context)
+
+def contact(request):
+    context = {}
+    return render(request, 'contact.html', context)
+
 def CreateProfile(request):
     form = ProfileForm(request.POST or None)
     model = Profile

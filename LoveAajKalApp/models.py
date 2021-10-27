@@ -23,7 +23,7 @@ class Profile(models.Model):
     smoking = models.BooleanField(blank=True, null=True)
     username = models.CharField(max_length=20)
     password = models.CharField(max_length=15)
-    email = models.CharField(max_length=30)
+    email = models.CharField(max_length=50)
 
     def get_absolute_url(self):
         return reverse('profile', kwargs={'pk': self.pk})
