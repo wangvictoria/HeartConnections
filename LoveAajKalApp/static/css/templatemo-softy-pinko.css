@@ -1128,7 +1128,7 @@ team
   margin-left: 25px;
   margin-top: 25px;
   font-size: 30px;
-  color: #4E47DE;
+  color: rgb(123, 207, 189);/*#4E47DE purple*/;
   text-align: center;
 }
 
@@ -1175,7 +1175,7 @@ team
   display: block;
   font-weight: 400;
   font-size: 15px;
-  color: #ff589e;
+  color: #555B6E/*#ff589e pink*/;
   letter-spacing: 0.25px;
 }
 
@@ -1458,7 +1458,7 @@ footer .social li {
 }
 
 footer .social li a {
-  color: #9d5bd9;
+  color: #9fe6dc;/* #9d5bd9;*/
    text-align: center;
   background-color: #fff;
   width: 36px;

@@ -44,16 +44,17 @@ https://templatemo.com/tm-535-softy-pinko
                 <div class="col-12">
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
-                        <a href="#" class="logo">
-                            <img src="{% static 'images/logo.png' %}" alt="Softy Pinko"/>
+                        <a href="{% url 'index' %}" class="logo" style="color:#3B566E;">
+                            <!--<img src="{% static 'images/logo.png' %}" alt="Softy Pinko"/>-->
+                            <h3><strong>LoveAajKal</strong></h3>
                         </a>
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
                             <li><a href="{% url 'index' %}" class="active">Home</a></li>
                             <li><a href="{% url 'create_profile' %}">My Profile</a></li>
-                            <li><a href="{% url 'profile_detailed_view' %}">Saved Profiles</a></li>
-                            <li><a href="#">Recommended Profiles</a></li>
+                            <li><a href="{% url 'saved' %}">Saved Profiles</a></li>
+                            <li><a href="{% url 'recommended' %}">Recommended Profiles</a></li>
                             <li><a href="{% url 'about' %}">About</a></li>
                             <li><a href="{% url 'contact' %}">Contact</a></li>
                         </ul>

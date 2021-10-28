@@ -12,6 +12,14 @@ def index(request):
     context['name'] = 'Victoria' # define name
     return render(request, 'index.html', context)
 
+def saved(request):
+    context = {}
+    return render(request, 'saved.html', context)
+
+def recommended(request):
+    context = {}
+    return render(request, 'recommended.html', context)
+
 def about(request):
     context = {}
     return render(request, 'about.html', context)
