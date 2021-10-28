@@ -4,8 +4,8 @@
 <head>
     {% load static %}
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/profile-default-view.css' %}">
 </head>
 
@@ -13,9 +13,9 @@
   <div class="row">
     <div class="fb-profile">
         <img align="left" class="fb-image-lg" src="https://image.winudf.com/v2/image1/aHUuYmthbG1hbi5hbmRyb2lkLmFwcC53aGl0ZXNjcmVlbl9zY3JlZW5fMV8xNTY3MDI0NzUwXzAwMw/screen-1.jpg?fakeurl=1&type=.jpg" alt="Profile image example" height="300"/>
-        <img align="left" class="fb-image-profile thumbnail" src="http://lorempixel.com/180/180/people/9/" alt="Profile image example"/>
+        <img align="left" class="fb-image-profile thumbnail" src="https://at-cdn-s02.audiotool.com/2018/04/01/documents/m949oob9/0/cover256x256-61d3f42cf44f43c999d3b24fbc8f0110.jpg" alt="Profile image example"/>
         <div class="fb-profile-text">
-            <h1>Jane Doe</h1>
+            <h1>{{ first_name }} {{ last_name }}, {{ age }}</h1>
               
         </div>
     </div>
@@ -26,14 +26,14 @@
   
         <div data-spy="scroll" class="tabbable-panel">
           <div class="tabbable-line">
-            <ul class="nav nav-tabs ">
+            <ul class="nav nav-tabs">
               <li class="active">
                 <a href="#tab_default_1" data-toggle="tab">
-                About Her </a>
+                About {{ first_name }} </a>
               </li>
               <li>
                 <a href="#tab_default_2" data-toggle="tab">
-               Education& Career</a>
+               Education & Career</a>
               </li>
               <li>
                 <a href="#tab_default_3" data-toggle="tab">
@@ -41,34 +41,19 @@
               </li>
                <li>
                 <a href="#tab_default_4" data-toggle="tab">
-               Desire Partner</a>
+               Lifestyle</a>
               </li>
             </ul>
             <div class="tab-content">
               <div class="tab-pane active" id="tab_default_1">
    
                 <p>
-                  My daughter  is good looking, with pleasant personality, smart, well educated, from well cultural and  a religious family background. having respect in heart for others.  
-                  would like to thanks you for visiting through my daughter;s profile. 
-                  She has done PG in Human Resources after her graduation. 
-                  At present working IN INSURANCE sector as Manager Training .
+                  {{ bio }}
                 </p>
-                <h4>About her Family</h4>
-                <p>
-                  About her family she belongs to a religious and a well cultural family background. 
-                  Father - Retired from a Co-operate Bank as a Manager. 
-                  Mother - she is a home maker. 
-                  1 younger brother - works for Life Insurance n manages cluster. 
-                </p>
-                <h4>Education </h4>
-                <p>I have done PG in Human Resourses</p>
-                <h4>Occupation</h4>
-                <p>At present Working in Insurance sector</p>
-             
               </div>
               <div class="tab-pane" id="tab_default_2">
                 <p>
-                  Education& Career
+                  Education & Career
                 </p>
                 <div class="row">
                 <div class="col-sm-6">
@@ -210,26 +195,23 @@
     <div class="col-sm-4">
      <div class="panel panel-default">
       <div class="menu_title">
-         Horoscope
+         Information
       </div>
       <div class="panel-body">
           <div class="row">
               <div class="col-lg-12">
                    <div class="form-group">
-                       <label for="email">Place of Birth:</label>
-                        <p> pune, maharashtra</p>
+                       <label for="email">Country:</label>
+                        <p> {{ country }}</p>
                    </div>
                     <div class="form-group">
-                        <label for="email">Date of Birth:</label>
-                        <p> 26 Sep 2017</p>
+                        <label for="email">State or Region:</label>
+                        <p> {{ state_region }}</p>
                     </div>
                     <div class="form-group">
-                        <label for="email">Time of Birth:</label>
-                        <p> 11:20 min.</p>
+                        <label for="email">City:</label>
+                        <p> {{ city }}</p>
                     </div>
-                     <div class="form-group">
-                        <label for="email">Horroscoe Match not Necessory</label>
-                     </div>
                       <div class="form-group">
                         <label for="email">Sun Sign:</label>
                         <p> Scorpio</p>
@@ -246,7 +228,6 @@
                         <label for="email">Manglik:</label>
                         <p> Manglik</p>
                       </div>
-                  <button type="submit" class="btn btn-danger btn-block">Submit</button>
               </div>
           </div>
       </div>

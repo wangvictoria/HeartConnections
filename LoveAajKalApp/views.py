@@ -34,6 +34,44 @@ def CreateProfile(request):
     
     return render(request, 'create_profile.html', context)
 
+'''
 def ProfileDetailedView(request):
-    context = {}#'profile-id': None}
+    model = Profile
+    context = {'first_name': model.first_name,
+               'last_name': model.last_name,
+               'age': model.age,
+               'gender': model.gender,
+               'country': model.country,
+               'state_region': model.state_region,
+               'city': model.city,
+               'occupation': model.occupation,
+               'education': model.education,
+               'bio': model.bio,
+               'religion': model.religion,
+               'hobbies': model.hobbies,
+               'dietary_preferences': model.dietary_preferences,
+               'alcohol': model.alcohol,
+               'smoking': model.smoking}
+    
+    return render(request, 'profile_default_view.html', context)
+'''
+
+def ProfileDetailedView(request):
+    model = Profile
+    context = {'first_name': 'Guy',
+               'last_name': 'Fieri',
+               'age': 53,
+               'gender': 'Male',
+               'country': 'United States',
+               'state_region': 'New York',
+               'city': 'Flavortown',
+               'occupation': 'Chef',
+               'education': 'Flavortown U',
+               'bio': "I'm the host of Diners, Drive-Ins, and Dives. I love what I do because I get to eat tons of good food. Let me take you to Flavortown on our first date.",
+               'religion': "Frosted Tips",
+               'hobbies': "Cooking, Eating, Driving",
+               'dietary_preferences': "Whatever you can cook, I can eat. Except eggs.",
+               'alcohol': True,
+               'smoking': False}
+    
     return render(request, 'profile_default_view.html', context)
