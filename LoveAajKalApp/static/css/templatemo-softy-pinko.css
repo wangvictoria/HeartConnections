@@ -81,7 +81,7 @@ header, nav, section, article, aside, footer, hgroup {
 html, body {
   font-family: "Raleway", sans-serif;
   font-weight: 400;
-  background-color: #FFD6BA;/* #fff;*/
+  background-color: rgb(123, 207, 189);/*(#FFD6BA;/* #fff;*/
   font-size: 16px;
   -ms-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
@@ -108,7 +108,7 @@ global styles
 */
 html,
 body {
-  background: #FFD6BA;/* #fff;*/
+  background: rgb(123, 207, 189);/*#FFD6BA;/* #fff;*/
   font-family: "Raleway", sans-serif;
 }
 
