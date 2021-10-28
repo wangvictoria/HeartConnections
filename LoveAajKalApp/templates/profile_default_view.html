@@ -15,7 +15,7 @@
         <img align="left" class="fb-image-lg" src="https://image.winudf.com/v2/image1/aHUuYmthbG1hbi5hbmRyb2lkLmFwcC53aGl0ZXNjcmVlbl9zY3JlZW5fMV8xNTY3MDI0NzUwXzAwMw/screen-1.jpg?fakeurl=1&type=.jpg" alt="Profile image example" height="300"/>
         <img align="left" class="fb-image-profile thumbnail" src="https://at-cdn-s02.audiotool.com/2018/04/01/documents/m949oob9/0/cover256x256-61d3f42cf44f43c999d3b24fbc8f0110.jpg" alt="Profile image example"/>
         <div class="fb-profile-text">
-            <h1>{{ first_name }} {{ last_name }}, {{ age }}</h1>
+            <h1>{{ first_name }} {{ last_name }}, {{ gender }}, {{ age }}</h1>
               
         </div>
     </div>
@@ -28,19 +28,19 @@
           <div class="tabbable-line">
             <ul class="nav nav-tabs">
               <li class="active">
-                <a href="#tab_default_1" data-toggle="tab">
+                <a data-toggle="tab" href="#tab_default_1">
                 About {{ first_name }} </a>
               </li>
               <li>
-                <a href="#tab_default_2" data-toggle="tab">
+                <a data-toggle="tab" href="#tab_default_2">
                Education & Career</a>
               </li>
               <li>
-                <a href="#tab_default_3" data-toggle="tab">
+                <a data-toggle="tab" href="#tab_default_3">
                Family Details</a>
               </li>
                <li>
-                <a href="#tab_default_4" data-toggle="tab">
+                <a data-toggle="tab" href="#tab_default_4">
                Lifestyle</a>
               </li>
             </ul>
@@ -213,20 +213,16 @@
                         <p> {{ city }}</p>
                     </div>
                       <div class="form-group">
-                        <label for="email">Sun Sign:</label>
-                        <p> Scorpio</p>
+                        <label for="email">Occupation:</label>
+                        <p> {{ occupation }}</p>
                       </div>
                       <div class="form-group">
-                        <label for="email">Rashi/ Moon sign:</label>
-                        <p> Mesh</p>
+                        <label for="email">Education:</label>
+                        <p> {{ education }}</p>
                       </div>
                        <div class="form-group">
-                        <label for="email">Nakshtra:</label>
-                        <p> Bharani</p>
-                      </div>
-                        <div class="form-group">
-                        <label for="email">Manglik:</label>
-                        <p> Manglik</p>
+                        <label for="email">Religion:</label>
+                        <p> {{ religion }}</p>
                       </div>
               </div>
           </div>
