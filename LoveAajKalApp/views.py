@@ -34,15 +34,24 @@ def CreateProfile(request):
     context = {'form': form}   
     if request.method == 'POST':
         if form.is_valid:
-            form.save()
+            '''form.save()
             name = form.cleaned_data['first_name']
             print(name)
+            form = ProfileForm(request.POST or None)
+            '''
+            #post = form.save(commit=False)
+            ## KASTUR'S EDIT IS BELOW, USED https://www.youtube.com/watch?v=qwE9TFNub84
+            post = form.save()
+            post.user = request.user
+            post.save 
+
+            test = form.cleaned_data['first_name']
+            form = ProfileForm(request.POST or None)
         else:
             form = ProfileForm(request.POST or None)
     
     return render(request, 'create_profile.html', context)
 
-'''
 def ProfileDetailedView(request):
     model = Profile
     context = {'first_name': model.first_name,
@@ -62,8 +71,8 @@ def ProfileDetailedView(request):
                'smoking': model.smoking}
     
     return render(request, 'profile_default_view.html', context)
-'''
 
+'''
 def ProfileDetailedView(request):
     model = Profile
     context = {'first_name': 'Guy',
@@ -83,3 +92,4 @@ def ProfileDetailedView(request):
                'smoking': False}
     
     return render(request, 'profile_default_view.html', context)
+'''
