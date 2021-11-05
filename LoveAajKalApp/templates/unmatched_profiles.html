@@ -1,4 +1,4 @@
-{% extends "base_generic.html" %}
+{% extends "admin_base_generic.html" %}
 
 {% block content %}
 <head>
@@ -18,8 +18,9 @@
         }
     </style>
 </head>
-<div class="baseframe"><h1>Recommended Profiles</h1></div><br><br>
-<!-- ***** Recommended Profiles ***** -->
+<div class="baseframe"><h1>Unmatched Profiles</h1></div><br><br>
+<!-- ***** All Profiles ***** -->
+{% if unmatched_list %}
 <!-- ***** Features Small Start ***** -->
 <section class="section home-feature">
     <div class="container">
@@ -27,39 +28,45 @@
             <div class="col-lg-12">
                 <div class="row">
                     <!-- ***** Features Small Item Start ***** -->
+                    {% for profile in unmatched_list %}
                     <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.2s">
-                        <a href="{% url 'profile_detailed_view' %}"><div class="features-small-item">
+                        <a href="{% url profile.get_absolute_url %}"><div class="features-small-item">
                             <div class="icon">
                                 <i><span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="{% static 'images/guy_fieri.jpg' %}" alt="" /></span></i>
                             </div>
-                            <h5 class="features-title">Guy Fieri</h5>
-                            <p>Here is his bio.</p>
+                            <h5 class="features-title">{{ profile.first_name }}, {{ profile.age }}</h5>
+                            <p>{{ profile.bio }}</p>
                         </div></a>
                     </div>
+                    {% endfor %}
                     <!-- ***** Features Small Item End ***** -->
 
                     <!-- ***** Features Small Item Start ***** -->
+                    {% for profile in unmatched_list %}
                     <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.4s">
                         <div class="features-small-item">
                             <div class="icon">
                                 <i><span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="{% static 'images/harold.jpg' %}" alt="" /></span></i>
                             </div>
-                            <h5 class="features-title">Joe Sixpack</h5>
-                            <p>Here is his bio.</p>
+                            <h5 class="features-title">{{ profile.first_name }}, {{ profile.age }}</h5>
+                            <p>{{ profile.bio }}</p>
                         </div>
                     </div>
+                    {% endfor %}
                     <!-- ***** Features Small Item End ***** -->
 
                     <!-- ***** Features Small Item Start ***** -->
+                    {% for profile in unmatched_list %}
                     <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.6s">
                         <div class="features-small-item">
                             <div class="icon">
                                 <i><span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="{% static 'images/barbie.jfif' %}" alt="" /></span></i>
                             </div>
-                            <h5 class="features-title">Barbie Doll</h5>
-                            <p>Here is her bio.</p>
+                            <h5 class="features-title">{{ profile.first_name }}, {{ profile.age }}</h5>
+                            <p>{{ profile.bio }}</p>
                         </div>
                     </div>
+                    {% endfor %}
                     <!-- ***** Features Small Item End ***** -->
                 </div>
             </div>
@@ -67,6 +74,9 @@
     </div>
 </section>
 <!-- ***** Features Small End ***** -->
+{% else %}
+    <h5>There are no unmatched profiles</h5>
+{% endif %}
 
 
 {% endblock %}

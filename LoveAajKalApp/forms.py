@@ -1,3 +1,12 @@
+'''
+Group #1 
+Sovann Chang - sovann.d.chang@vanderbilt.edu
+Kastur Koul - kastur.koul@vanderbilt.edu
+Victoria Wang - victoria.m.wang@vanderbilt.edu
+Kristen Wright - kristen.v.wright@vanderbilt.edu
+Homework #3
+'''
+
 from django import forms
 from .models import Profile
 
@@ -14,10 +23,12 @@ class ProfileForm(forms.ModelForm):
             'last_name',
             'age',
             'gender', 
+            'sexuality',
             'country',
             'state_region',
             'city',
             'occupation',
+            'company',
             'education', 
             'bio',
             'religion',
@@ -25,10 +36,7 @@ class ProfileForm(forms.ModelForm):
             'dietary_preferences',
             'alcohol',
             'smoking',
-            'username',
-            'password',
-            'email')
-
-# Creating a form to add a profile.
-    # form = ProfileForm()
+            'email',)
+            # Creating a form to add a profile.
+            # form = ProfileForm()
 

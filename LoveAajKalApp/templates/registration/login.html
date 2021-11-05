@@ -1,0 +1,80 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<head>
+    {% load static %}
+    <!-- Additional CSS Files -->
+    <style>
+        .baseframe{
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover; 
+            height: 50vh;
+        }
+    </style>
+</head>
+<div class="baseframe"><h1>Admin Login</h1></div><br><br>
+<!-- ***** Login ***** -->
+
+<!-- ***** Features Small Start ***** -->
+<section class="section home-feature">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <!-- ***** Features Small Item Start ***** -->
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-12" style="margin: 0 auto" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.2s">
+                        <div class="features-small-item">
+                            {% if form.errors %}
+    <p>Your username and password didn't match. Please try again.</p>
+  {% endif %}
+
+  {% if next %}
+    {% if user.is_authenticated %}
+      <p>Your account doesn't have access to this page. To proceed,
+      please login with an account that has access.</p>
+    {% else %}
+      <p>Please login to see this page.</p>
+    {% endif %}
+  {% endif %}
+
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <table>
+        <tr>
+          <td>{{ form.username.label_tag }}</td>
+          <td>{{ form.username }}</td>
+        </tr>
+        <tr>
+          <td>{{ form.password.label_tag }}</td>
+          <td>{{ form.password }}</td>
+        </tr>
+      </table>
+    
+    <input type="submit" value="Log In" />
+    <input type="hidden" name="next" value="{{ next }}" />
+  </form>
+                        </div>
+                    </div>
+                    <!-- ***** Features Small Item End ***** -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ***** Features Small End ***** -->
+
+<div class="container rounded mt-5 mb-5">
+    <div class="row">
+        
+  
+
+</div>
+</div>
+
+{% endblock %}

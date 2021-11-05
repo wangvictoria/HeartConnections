@@ -52,7 +52,7 @@
             <!-- ***** Contact Form Start ***** -->
             <div class="col-lg-8 col-md-6 col-sm-12">
                 <div class="contact-form">
-                    <h2> Get In Touch - {{ message_name }} </h2>
+                    <h2> Get In Touch - {{ message_name }} </h2><br>
                     <form id="contact" action="{% url 'contact' %}" method="post">
                         {% csrf_token %}
                       <div class="row">
