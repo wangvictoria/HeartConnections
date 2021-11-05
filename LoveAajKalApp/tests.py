@@ -213,8 +213,6 @@ class ProfileTest(TestCase):
         profile = ProfileModel.objects.get(pk=1)
         max_length = profile._meta.get_field('email').max_length
         self.assertEqual(max_length, 50)
-
-
     
     # These tests check to see if different webpages are blocked to users who are not admins.
     # Each page should redirect the user to the admin login page, with the next page that the
@@ -254,7 +252,3 @@ class ProfileTest(TestCase):
         "smoking": False,
         "email": "johndoe@vanderbilt.edu"})
         self.assertFalse(form.is_valid())
-
-    def emailProfiles(self):
-        pass
-    '''

@@ -1,7 +1,11 @@
 {% extends "admin_base_generic.html" %}
 
 {% block content %}
-<head>{% load static %}</head>
+<head>
+    {% load static %}
+    <style>
+    </style>
+</head>
 
 <!-- ***** Welcome Area Start ***** -->
 <div class="welcome-area" id="welcome">
@@ -12,7 +16,7 @@
             <div class="row">
                 <div class="offset-xl-3 col-xl-6 offset-lg-2 col-lg-8 col-md-12 col-sm-12">
                     <h1>Hi, Reshma!</h1>
-                    <p>Click on the button below to begin matchmaking</p>
+                    <p>Click the button below to begin matchmaking</p>
                     <a href="{% url 'unmatched_profiles' %}" class="main-button-slider">View Profiles</a><br><br><br>
                 </div>
             </div>

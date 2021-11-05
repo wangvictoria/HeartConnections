@@ -20,7 +20,7 @@ class Profile(models.Model):
     last_name = models.CharField(max_length=40)
     age = models.IntegerField()
     gender = models.CharField(max_length=20)
-    sexuality = models.CharField(max_length=25, default='Prefer not to say')
+    sexuality = models.CharField(max_length=25)
     country = models.CharField(max_length=40)
     state_region = models.CharField(max_length=20)
     city = models.CharField(max_length=30)
@@ -33,10 +33,14 @@ class Profile(models.Model):
     dietary_preferences = models.CharField(max_length=100, blank=True, null=True)
     alcohol = models.BooleanField(blank=True, null=True)
     smoking = models.BooleanField(blank=True, null=True)
-    email = models.CharField(max_length=50)
+    email = models.EmailField(max_length=50)
 
     matched = models.BooleanField(default=False)
 
     def get_absolute_url(self):
         return reverse('profile_detailed_view', kwargs={'pk': self.pk})
         #return reverse('profile', args=[str(self.id)])
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
+    

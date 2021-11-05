@@ -51,6 +51,9 @@ def unmatched_profiles(request):
     #     return context
     return render(request, 'unmatched_profiles.html', context)
 
+# @login_required
+# class UnmatchedProfiles()
+
 @login_required
 def matched_profiles(request):
     context = {}
