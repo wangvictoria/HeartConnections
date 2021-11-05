@@ -9,6 +9,7 @@ Homework #3
 
 from django.db import models
 from django.db.models.fields import BooleanField
+from django.urls import reverse
 
 # Create your models here.
 # Remember to register model in admin.py
@@ -37,4 +38,5 @@ class Profile(models.Model):
     matched = models.BooleanField(default=False)
 
     def get_absolute_url(self):
-        return reverse('profile', kwargs={'pk': self.pk})
+        return reverse('profile_detailed_view', kwargs={'pk': self.pk})
+        #return reverse('profile', args=[str(self.id)])

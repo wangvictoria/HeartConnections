@@ -30,23 +30,26 @@ def admin_index(request):
     return render(request, 'admin_index.html', context)
 
 @login_required
-class UnmatchedProfiles(generic.ListView):
-    # context = {'unmatched_list': None, 'sec_list': None}
-    # unmatched_profiles = Profile.objects.all().filter(matched=False)
-    # context['unmatched_list'] = unmatched_profiles
-    # context['first_profiles'] = unmatched_profiles[1::2]
-    # context['second_profiles'] = unmatched_profiles[::2]
-    # context['third_profiles'] = unmatched_profiles[::3]
+def unmatched_profiles(request):
     model = Profile
-    context_object_name = 'umatched_list'
-    template_name = 'profile_detailed_view.html'
-    queryset = Profile.objects.filter(matched=False)
-    def get_context_data(self, **kwargs):
-        # Call the base implementation first to get the context
-        context = super(UnmatchedProfiles, self).get_context_data(**kwargs)
-        # Create any data and add it to the context
-        context['first_name'] = 'some data'
-        return context
+    context = {'unmatched_list': None, 'first_profiles': None, 
+                'second_profiles': None, 'third_profiles': None}
+    unmatched_list = Profile.objects.all().filter(matched=False)
+    context['unmatched_list'] = unmatched_list
+    # context['first_profiles'] = unmatched_list[1::2]
+    # context['second_profiles'] = unmatched_list[::2]
+    # context['third_profiles'] = unmatched_list[::3]
+    # model = Profile
+    # context_object_name = 'umatched_list'
+    # template_name = '../profile_detailed_view.html'
+    # queryset = Profile.objects.filter(matched=False)
+    # def get_context_data(self, **kwargs):
+    #     # Call the base implementation first to get the context
+    #     context = super(UnmatchedProfiles, self).get_context_data(**kwargs)
+    #     # Create any data and add it to the context
+    #     context['first_name'] = 'some data'
+    #     return context
+    return render(request, 'unmatched_profiles.html', context)
 
 @login_required
 def matched_profiles(request):
@@ -119,7 +122,7 @@ def ProfileDetailedView(request):
                'alcohol': model.alcohol,
                'smoking': model.smoking}
 
-    return render(request, 'profile_default_view.html', context)
+    return render(request, 'profile_detailed_view.html', context)
 
 '''
 def ProfileDetailedView(request):

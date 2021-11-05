@@ -9,14 +9,14 @@ Homework #3
 
 from django.urls import path, include
 from . import views
-from .views import CreateProfile
+#from .views import UnmatchedProfiles
 
 urlpatterns = [
     path('', views.index, name='index'),
     path('matchmaker/', views.admin_index, name='admin_index'),
     path('profile/create/', views.CreateProfile, name='create_profile'),
     path('profile/view/', views.ProfileDetailedView, name='profile_detailed_view'),
-    path('profile/unmatched_profiles/', views.UnmatchedProfiles.as_view(), name='unmatched_profiles'),
+    path('profile/unmatched_profiles/', views.unmatched_profiles, name='unmatched_profiles'),
     path('profile/matched_profiles', views.matched_profiles, name='matched_profiles'),
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
