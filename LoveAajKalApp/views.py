@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import ProfileForm
 #from django.views.generic.edit import FormView, CreateView, DeleteView, UpdateView
 from .models import Profile
+from django.core.mail import send_mail
 from django.urls import reverse_lazy
 
 # Create your views here.
@@ -25,8 +26,22 @@ def about(request):
     return render(request, 'about.html', context)
 
 def contact(request):
-    context = {}
-    return render(request, 'contact.html', context)
+    if request.method == 'POST':
+        message_name = request.POST['name']
+        message_email = request.POST['email']
+        message = request.POST['message']
+
+        # send email
+        send_mail(
+            'message from ' + message_name,  # subject
+            message,  # message
+            message_email,  # from email
+            ['kristen.v.wright@vanderbilt.edu']  # To Email
+        )
+        return render(request, 'contact.html', {'message_name': message_name})
+
+    else:
+        return render(request, 'contact.html', {})
 
 def CreateProfile(request):
     form = ProfileForm(request.POST or None)

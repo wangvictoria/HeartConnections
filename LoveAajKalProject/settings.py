@@ -125,3 +125,15 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# This video clearly outlines how to do email for Contact Page:
+# https://www.youtube.com/watch?v=xNqnHmXIuzU&ab_channel=Codemy.com
+# Email settings
+# to test email run this command in virtual environment:
+# python3 -m smtpd -n -c DebuggingServer localhost:1025
+EMAIL_HOST = 'localhost' #change to actual email server when in production
+EMAIL_PORT = '1025' #change to email server port # when in production
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = False
