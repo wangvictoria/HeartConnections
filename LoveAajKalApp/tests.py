@@ -233,57 +233,27 @@ class ProfileTest(TestCase):
         self.assertRedirects(response, '/accounts/login/?next=/LoveAajKalApp/matchmaker/')
     
 
-    '''
-
-    #### NEED TO FINISH!!!! 
+    # Check if the profile is invalid (Missing first name, which is required)
     def test_createInvalidProfile(self):
-        form = ProfileForm(data= {"first_name": "John", "last_name" : "Doe",
-        "profile.age" :25,
-        "profile.gender": "Male",
-        "profile.sexuality": "Straight",
-        "profile.country": "USA",
-        "profile.state_region": "Tenneesee",
-        "profile.city": "Nashville",
-        "profile.occupation": "Software Engineer",
-        "profile.company": "Amazon",
-        "profile.education": "Vanderbilt",
-        "profile.bio": "Hello!",
-        "profile.religion": "Coding",
-        "profile.hobbies": "Coding, not sleeping",
-        "profile.dietary_preferences": "Everything",
-        "profile.alcohol": True,
-        "profile.smoking": False,
-        "profile.email": "johndoe@vanderbilt.edu"})
-    '''
-    
-    '''class InvalidFormTest(TestCase):
-    @classmethod
-    def setUpTestData(cls):
-        # Create an invalid profile
-        profile = ProfileModel() 
-        profile.last_name = "Doe" 
-        profile.age = 25
-        profile.gender = "Male"
-        profile.sexuality = "Straight",
-        profile.country = "USA"
-        profile.state_region = "Tenneesee"
-        profile.city = "Nashville"
-        profile.occupation = "Software Engineer"
-        profile.company = "Amazon"
-        profile.education = "Vanderbilt" 
-        profile.bio = "Hello!"
-        profile.religion = "Coding"
-        profile.hobbies = "Coding, not sleeping"
-        profile.dietary_preferences = "Everything"
-        profile.alcohol = True 
-        profile.smoking = False 
-        profile.email = "johndoe@vanderbilt.edu"
-        profile.save()
-
-    def test_createInvalidProfile(self):
-        response = self.client.post() 
-        self.assertEqual(response.status_code, 200)
-        #self.assetFormError()
+        print("CHECK TEST")
+        form = ProfileForm(data= {"last_name" : "Doe",
+        "age" :25,
+        "gender": "Male",
+        "sexuality": "Straight",
+        "country": "USA",
+        "state_region": "Tenneesee",
+        "city": "Nashville",
+        "occupation": "Software Engineer",
+        "company": "Amazon",
+        "education": "Vanderbilt",
+        "bio": "Hello!",
+        "religion": "Python",
+        "hobbies": "Coding",
+        "dietary_preferences": "Everything",
+        "alcohol": True,
+        "smoking": False,
+        "email": "johndoe@vanderbilt.edu"})
+        self.assertFalse(form.is_valid())
 
     def emailProfiles(self):
         pass
