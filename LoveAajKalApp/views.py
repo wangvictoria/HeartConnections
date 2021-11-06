@@ -7,8 +7,8 @@ Kristen Wright - kristen.v.wright@vanderbilt.edu
 Homework #3
 '''
 
-from django.shortcuts import render
-from .forms import ProfileForm
+from django.shortcuts import render, redirect
+from .forms import ProfileForm, MatchmakerForm, MatchActionForm
 from django.views import generic
 from .models import Profile
 from django.core.mail import send_mail
@@ -79,7 +79,7 @@ def CreateProfile(request):
     model = Profile
     context = {'form': form}   
     if request.method == 'POST':
-        if form.is_valid:
+        if form.is_valid():
             '''form.save()
             name = form.cleaned_data['first_name']
             print(name)
@@ -87,17 +87,37 @@ def CreateProfile(request):
             '''
             #post = form.save(commit=False)
             ## KASTUR'S EDIT IS BELOW, USED https://www.youtube.com/watch?v=qwE9TFNub84
-            post = form.save()
-            post.user = request.user
-            post.save 
+            form.save()
+            # post.user = request.user
+            # post.save
 
             #test = form.cleaned_data['first_name']
-            form = ProfileForm(request.POST or None)
+            return redirect('create_profile_success')
         else:
             form = ProfileForm(request.POST or None)
     
     return render(request, 'create_profile.html', context)
 
+
+def create_profile_success(request):
+    context = {}
+    return render(request, 'create_profile_success.html', context)
+
+def match_action(request):
+    model = Profile
+    form = MatchActionForm(request.POST or None)
+    context = {'available_list': None}
+    available_list = Profile.objects.all().filter(matched=False)
+    context['available_list'] = available_list
+    if request.method == 'POST':
+        if form.is_valid():
+            profile_instance = Profile.objects.get()
+            profile_instance.matched_with = form.cleaned_data.get('matched_with')
+            return redirect('match_action_success')
+        else:
+            form = MatchActionForm(request.POST or None)
+
+    return render(request, 'match_action.html', context)
 
 class UnmatchedProfiles(generic.ListView):
     model = Profile
@@ -112,9 +132,18 @@ class MatchedProfiles(generic.ListView):
     template_name = 'matched_profiles.html'
 
 
-class ProfileDetailedView(generic.DetailView):
+class ProfileDetailedView(generic.FormView):
     model = Profile
+    form_class = MatchmakerForm
+    success_url = '../unmatched'
     template_name = 'profile_detailed_view.html'
+    
+    def form_valid(self, form):
+        profile_instance = Profile.objects.get()
+        profile_instance.notes = form.cleaned_data.get('notes')
+        return super().form_valid(form)
+
+
     # context = {'first_name': model.first_name,
     #            'last_name': model.last_name,
     #            'age': model.age,

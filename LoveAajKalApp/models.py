@@ -36,10 +36,14 @@ class Profile(models.Model):
     email = models.EmailField(max_length=50)
 
     matched = models.BooleanField(default=False)
+    matched_with = models.CharField(max_length=100, blank=True, null=True)
+    notes = models.CharField(max_length=500, blank=True, null=True)
+
 
     def get_absolute_url(self):
-        return reverse('profile_detailed_view', kwargs={'pk': self.pk})
-        #return reverse('profile', args=[str(self.id)])
+        return reverse('profile_detailed_view', kwargs={'id': self.id})
+        #return ('profile_detailed_view', (), {'id': self.id})
+        #return reverse('profile_detailed_view', args=[str(self.id)])
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'

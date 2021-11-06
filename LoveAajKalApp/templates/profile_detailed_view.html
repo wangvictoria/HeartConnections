@@ -148,23 +148,33 @@
             <p>{{ profile.email }}</p>
           </div>
         </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+          <div class="form-group">
+            <label for="website"><strong>ID</strong></label>
+            <p>{{ profile.id }}</p>
+          </div>
+        </div>
       </div>
       <div class="row gutters">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <h6 class="mt-3 mb-2 text-primary"></h6>
         </div>
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+          
+        <form method="post">
+        {% csrf_token %}
           <div class="form-group">
-            <label for="ciTy">Notes</label>
-            <input type="name" class="form-control" id="ciTy" placeholder="Matchmaking Notes">
+            <button type="button" id="match" name="match" class="btn btn-primary" onclick="location.href='{% url 'match_action' %}'">Match</button><br><br>
+            <label for="notes">Notes</label>
+            <textarea id="notes" class="form-control" name="notes" id="notes" rows="4" cols="50" placeholder="Matchmaking Notes">{{ profile.notes }}</textarea>
           </div>
         </div>
       </div>
       <div class="row gutters">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="text-right">
-            <button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>
-            <button type="button" id="submit" name="submit" class="btn btn-primary">Update</button>
+            <button type="button" id="submit" name="submit" class="btn btn-secondary" onclick="location.href='{% url 'unmatched_profiles' %}'">Cancel</button>
+            <button type="submit" id="submit" name="submit" class="btn btn-primary">Update</button>
           </div>
         </div>
       </div>
@@ -173,5 +183,6 @@
   </div>
   </div>
   </div>
+</form>
   <div class="baseframe"></div>
 {% endblock %}

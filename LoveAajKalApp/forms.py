@@ -38,3 +38,18 @@ class ProfileForm(forms.ModelForm):
             # Creating a form to add a profile.
             # form = ProfileForm()
 
+class MatchmakerForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = (
+            'matched',
+            'notes',
+        )
+
+class MatchActionForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = (
+            'matched_with',
+        )
+
