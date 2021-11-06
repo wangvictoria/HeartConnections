@@ -218,8 +218,8 @@ class ProfileTest(TestCase):
     # These tests check to see if different webpages are blocked to users who are not admins.
     # Each page should redirect the user to the admin login page, with the next page that the
     # site will access after that being the page the user attempted to access (if login is successful)
-    
-    def test_block_access_unmatched_profiles(self):
+    #### THESE TESTS REQUIRE HTML AND WILL NOT BE INCLUDED IN THE HOMEWORK 3 SUBMISSION ######
+    '''def test_block_access_unmatched_profiles(self):
         response = self.client.get(reverse('unmatched_profiles'))
         self.assertRedirects(response, '/accounts/login/?next=/LoveAajKalApp/profile/unmatched_profiles/')
     
@@ -229,7 +229,7 @@ class ProfileTest(TestCase):
 
     def test_block_access_matchmaker(self):
         response = self.client.get(reverse('admin_index'))
-        self.assertRedirects(response, '/accounts/login/?next=/LoveAajKalApp/matchmaker/')
+        self.assertRedirects(response, '/accounts/login/?next=/LoveAajKalApp/matchmaker/')'''
     
 
     # Check if the profile is invalid (Missing first name, which is required)
@@ -260,8 +260,9 @@ class SimpleViewsTest(TestCase):
     def setUp(self):
         # Every test needs a client.
         self.client = Client()
-
-    def test_RootPage(self):
+    
+    ### THESE TESTS REQUIRE HTML AND WILL NOT BE INCLUDED IN THE HOMEWORK 3 SUBMISSION ######
+    '''def test_RootPage(self):
         response = self.client.get('/', follow=True)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'index.html')
@@ -295,6 +296,7 @@ class SimpleViewsTest(TestCase):
         response = self.client.get('/LoveAajKalApp/contact/', follow=True)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'contact.html')
+    '''
 
     ###### THIS IS A MANUAL TEST! #######
     # This tests that the send_mail function works when the client sends a valid POST request
