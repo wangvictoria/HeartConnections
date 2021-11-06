@@ -7,10 +7,11 @@ Kristen Wright - kristen.v.wright@vanderbilt.edu
 Homework #3
 '''
 
-from django.test import TestCase
+from django.test import TestCase, Client
 from .models import Profile as ProfileModel
 from .forms import ProfileForm
 from django.urls import reverse
+from django.test import override_settings
 
 # This is the video that shows unit tests in Django:
 # https://www.youtube.com/watch?v=DmRpNoQEx2o&ab_channel=GoDjango 
@@ -224,7 +225,7 @@ class ProfileTest(TestCase):
     
     def test_block_access_matched_profiles(self):
         response = self.client.get(reverse('matched_profiles'))
-        self.assertRedirects(response, '/accounts/login/?next=/LoveAajKalApp/profile/matched_profiles')
+        self.assertRedirects(response, '/accounts/login/?next=/LoveAajKalApp/profile/matched_profiles/')
 
     def test_block_access_matchmaker(self):
         response = self.client.get(reverse('admin_index'))
@@ -252,3 +253,60 @@ class ProfileTest(TestCase):
         "smoking": False,
         "email": "johndoe@vanderbilt.edu"})
         self.assertFalse(form.is_valid())
+
+# This class tests that the views in our views.py file are linked correctly
+# This class uses Python's dummy client to send GET and POST requests to our server without a browser
+class SimpleViewsTest(TestCase):
+    def setUp(self):
+        # Every test needs a client.
+        self.client = Client()
+
+    def test_RootPage(self):
+        response = self.client.get('/', follow=True)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'index.html')
+
+    def test_AboutPage(self):
+        response = self.client.get('/LoveAajKalApp/about/', follow=True)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'about.html')
+
+    def test_ProfileCreatePage(self):
+        response = self.client.get('/LoveAajKalApp/profile/create/', follow=True)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'create_profile.html')
+
+    def test_ProfileViewPage(self):
+        response = self.client.get('/LoveAajKalApp/profile/view/', follow=True)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'profile_detailed_view.html')
+
+    def test_ProfileUnmatchedPage(self):
+        response = self.client.get('/LoveAajKalApp/profile/unmatched_profiles/', follow=True)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response,'registration/login.html')
+
+    def test_ProfileMatchedPage(self):
+        response = self.client.get('/LoveAajKalApp/profile/matched_profiles/', follow=True)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response,'registration/login.html')
+
+    def test_ContactPage(self):
+        response = self.client.get('/LoveAajKalApp/contact/', follow=True)
+        self.assertEquals(response.status_code, 200)
+        self.assertTemplateUsed(response, 'contact.html')
+
+    ###### THIS IS A MANUAL TEST! #######
+    # This tests that the send_mail function works when the client sends a valid POST request
+    # To tests this: open a second terminal and set the pwd to LoveAajKal root directory
+    # Set up a python virtual environment by running command: 'python3 -m venv env'
+    # Activate the python environement by running command: 'source env/bin/activate'
+    # Run the following command so that the server is listening for the client POST request:
+    # 'python3 -m smtpd -n -c DebuggingServer localhost:1025'
+    # Run this test function and an email should be 'delivered' in the second terminal
+    # The email should be delivered in the terminal
+    @override_settings(EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend')
+    def test_emailContactForm(self):
+         response = self.client.post('/LoveAajKalApp/contact/', {'name': 'JOHN DOE', 'email': 'johndoe@gmail.com', 'message': 'TEST MESSAGE'}, follow=True)
+         self.assertEquals(response.status_code, 200)
+         self.assertTemplateUsed(response, 'contact.html')

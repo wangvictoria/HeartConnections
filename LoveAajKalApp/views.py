@@ -98,7 +98,7 @@ def CreateProfile(request):
             post.user = request.user
             post.save 
 
-            test = form.cleaned_data['first_name']
+            #test = form.cleaned_data['first_name']
             form = ProfileForm(request.POST or None)
         else:
             form = ProfileForm(request.POST or None)
@@ -126,26 +126,3 @@ def ProfileDetailedView(request):
                'smoking': model.smoking}
 
     return render(request, 'profile_detailed_view.html', context)
-
-'''
-def ProfileDetailedView(request):
-    model = Profile
-    context = {'first_name': 'Guy',
-               'last_name': 'Fieri',
-               'age': 53,
-               'gender': 'Male',
-               'country': 'United States',
-               'state_region': 'New York',
-               'city': 'Flavortown',
-               'occupation': 'Chef',
-               'company': 'Guy Fieri Company',
-               'education': 'Flavortown U',
-               'bio': "I'm the host of Diners, Drive-Ins, and Dives. I love what I do because I get to eat tons of good food. Let me take you to Flavortown on our first date.",
-               'religion': "Frosted Tips",
-               'hobbies': "Cooking, Eating, Driving",
-               'dietary_preferences': "Whatever you can cook, I can eat. Except eggs.",
-               'alcohol': True,
-               'smoking': False}
-    
-    return render(request, 'profile_default_view.html', context)
-'''
