@@ -41,7 +41,8 @@ class Profile(models.Model):
 
 
     def get_absolute_url(self):
-        return reverse('profile_detailed_view', kwargs={'id': self.id})
+        # print(f"self.pk >>>>>>>>>>>>>>>>>>>>>>{self.pk}")
+        return reverse('profile_detailed_view', kwargs={'pk': self.pk})
         #return ('profile_detailed_view', (), {'id': self.id})
         #return reverse('profile_detailed_view', args=[str(self.id)])
 

@@ -12,7 +12,7 @@ from .forms import ProfileForm, MatchmakerForm, MatchActionForm
 from django.views import generic
 from .models import Profile
 from django.core.mail import send_mail
-from django.urls import reverse_lazy
+from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -132,16 +132,39 @@ class MatchedProfiles(generic.ListView):
     template_name = 'matched_profiles.html'
 
 
-class ProfileDetailedView(generic.FormView):
+class ProfileDetailedView(generic.edit.FormMixin, generic.DetailView):
     model = Profile
     form_class = MatchmakerForm
     success_url = '../unmatched'
     template_name = 'profile_detailed_view.html'
-    
+
+    def get_success_url(self):
+        return reverse('profile_detailed_view', kwargs={'pk': self.object.id})
+
+    def get_context_data(self, **kwargs):
+        context = super(ProfileDetailedView, self).get_context_data(**kwargs)
+        # context['form'] = MatchmakerForm(initial={'notes': self.object})
+        context['form'] = self.get_form()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
     def form_valid(self, form):
-        profile_instance = Profile.objects.get()
-        profile_instance.notes = form.cleaned_data.get('notes')
-        return super().form_valid(form)
+        self.object.notes = form.cleaned_data.get('notes')
+        self.object.save()
+        return super(ProfileDetailedView, self).form_valid(form)
+    
+    # def form_valid(self, form):
+    #     profile_instance = Profile.objects.filter(id=self.object.id)
+    #     profile_instance.notes = form.cleaned_data.get('notes')
+    #     profile_instance.save()
+    #     return super().form_valid(form)
 
 
     # context = {'first_name': model.first_name,
