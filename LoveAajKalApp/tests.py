@@ -218,6 +218,7 @@ class ProfileTest(TestCase):
     # These tests check to see if different webpages are blocked to users who are not admins.
     # Each page should redirect the user to the admin login page, with the next page that the
     # site will access after that being the page the user attempted to access (if login is successful)
+
     #### THESE TESTS REQUIRE HTML AND WILL NOT BE INCLUDED IN THE HOMEWORK 3 SUBMISSION ######
     '''def test_block_access_unmatched_profiles(self):
         response = self.client.get(reverse('unmatched_profiles'))
@@ -230,11 +231,9 @@ class ProfileTest(TestCase):
     def test_block_access_matchmaker(self):
         response = self.client.get(reverse('admin_index'))
         self.assertRedirects(response, '/accounts/login/?next=/LoveAajKalApp/matchmaker/')'''
-    
 
     # Check if the profile is invalid (Missing first name, which is required)
     def test_createInvalidProfile(self):
-        print("CHECK TEST")
         form = ProfileForm(data= {"last_name" : "Doe",
         "age" :25,
         "gender": "Male",
@@ -256,13 +255,13 @@ class ProfileTest(TestCase):
 
 # This class tests that the views in our views.py file are linked correctly
 # This class uses Python's dummy client to send GET and POST requests to our server without a browser
-class SimpleViewsTest(TestCase):
+### THE FOLLOWING TESTS REQUIRE HTML AND WILL NOT BE INCLUDED IN THE HOMEWORK 3 SUBMISSION ######
+'''class SimpleViewsTest(TestCase):
     def setUp(self):
         # Every test needs a client.
         self.client = Client()
-    
-    ### THESE TESTS REQUIRE HTML AND WILL NOT BE INCLUDED IN THE HOMEWORK 3 SUBMISSION ######
-    '''def test_RootPage(self):
+
+    def test_RootPage(self):
         response = self.client.get('/', follow=True)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'index.html')
@@ -296,7 +295,6 @@ class SimpleViewsTest(TestCase):
         response = self.client.get('/LoveAajKalApp/contact/', follow=True)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'contact.html')
-    '''
 
     ###### THIS IS A MANUAL TEST! #######
     # This tests that the send_mail function works when the client sends a valid POST request
@@ -311,4 +309,4 @@ class SimpleViewsTest(TestCase):
     def test_emailContactForm(self):
          response = self.client.post('/LoveAajKalApp/contact/', {'name': 'JOHN DOE', 'email': 'johndoe@gmail.com', 'message': 'TEST MESSAGE'}, follow=True)
          self.assertEquals(response.status_code, 200)
-         self.assertTemplateUsed(response, 'contact.html')
+         #self.assertTemplateUsed(response, 'contact.html')'''
