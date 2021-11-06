@@ -28,14 +28,10 @@
       <div class="account-settings">
         <div class="user-profile">
           <div class="user-avatar">
-            <div class="icon">
-              <i><span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="{% static 'images/anonymous-neutral.jpg' %}" alt="" /></span></i>
-            </div>
+            <img src="" alt="photo">
           </div>
-          <div class="about">
-            <h5 class="user-name">{{ profile.first_name }} {{ profile.last_name }}</h5>
-          </div>
-          <h6 class="user-email">{{ profile.email }}</h6><br>
+          <h5 class="user-name"></h5>
+          <h6 class="user-email">{{ profile.email }}</h6>
         </div>
         <div class="about">
           <h5>Bio</h5>
@@ -54,109 +50,91 @@
         </div>
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
           <div class="form-group">
-            <label for="fullName"><strong>Full Name</strong></label>
-            <p>{{ profile.first_name }} {{ profile.last_name }}</p>
+            <label for="first_name">First Name</label>
+            <input type="text" class="form-control" id="first_name" placeholder="First Name">
           </div>
         </div>
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
           <div class="form-group">
-            <label for="phone"><strong>Age</strong></label>
-            <p>{{ profile.age }}</p>
+            <label for="last_name">Last Name</label>
+            <input type="text" class="form-control" id="last_name" placeholder="Last Name">
           </div>
         </div>
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
           <div class="form-group">
-            <label for="website"><strong>Gender</strong></label>
-            <p>{{ profile.gender }}</p>
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Email">
           </div>
         </div>
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
           <div class="form-group">
-            <label for="website"><strong>Sexuality</strong></label>
-            <p>{{ profile.sexuality }}</p>
+            <label for="age">Age</label>
+            <input type="text" class="form-control" id="age" placeholder="Age">
           </div>
         </div>
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
           <div class="form-group">
-            <label for="website"><strong>Country</strong></label>
-            <p>{{ profile.country }}</p>
+            <label for="gender">Gender</label>
+            <input type="text" class="form-control" id="gender" placeholder="Gender">
           </div>
         </div>
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
           <div class="form-group">
-            <label for="website"><strong>State Region</strong></label>
-            <p>{{ profile.state_region }}</p>
+            <label for="sexuality">Sexuality</label>
+            <input type="text" class="form-control" id="sexuality" placeholder="Sexuality">
           </div>
         </div>
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
           <div class="form-group">
-            <label for="website"><strong>City</strong></label>
-            <p>{{ profile.city }}</p>
+            <label for="country">Country</label>
+            <input type="text" class="form-control" id="country" placeholder="Country">
           </div>
         </div>
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
           <div class="form-group">
-            <label for="website"><strong>Occupation</strong></label>
-            <p>{{ profile.occupation }}</p>
+            <label for="state_region">State Region</label>
+            <input type="text" class="form-control" id="state_region" placeholder="State Region">
           </div>
         </div>
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
           <div class="form-group">
-            <label for="website"><strong>Company</strong></label>
-            <p>{{ profile.company }}</p>
-          </div>
-        </div>
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-          <div class="form-group">
-            <label for="website"><strong>Education</strong></label>
-            <p>{{ profile.education }}</p>
-          </div>
-        </div>
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-          <div class="form-group">
-            <label for="website"><strong>Religion</strong></label>
-            <p>{{ profile.religion }}</p>
-          </div>
-        </div>
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-          <div class="form-group">
-            <label for="website"><strong>Hobbies</strong></label>
-            <p>{{ profile.hobbies }}</p>
-          </div>
-        </div>
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-          <div class="form-group">
-            <label for="website"><strong>Dietary Preferences</strong></label>
-            <p>{{ profile.dietary_preferences }}</p>
-          </div>
-        </div>
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-          <div class="form-group">
-            <label for="website"><strong>Alcohol</strong></label>
-            <p>{{ profile.alcohol }}</p>
-          </div>
-        </div>
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-          <div class="form-group">
-            <label for="website"><strong>Smoking</strong></label>
-            <p>{{ profile.smoking }}</p>
-          </div>
-        </div>
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-          <div class="form-group">
-            <label for="website"><strong>Email</strong></label>
-            <p>{{ profile.email }}</p>
+            <label for="city">City</label>
+            <input type="text" class="form-control" id="city" placeholder="City">
           </div>
         </div>
       </div>
       <div class="row gutters">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-          <h6 class="mt-3 mb-2 text-primary"></h6>
+          <h6 class="mt-3 mb-2 text-primary">Optional</h6>
         </div>
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
           <div class="form-group">
-            <label for="ciTy">Notes</label>
-            <input type="name" class="form-control" id="ciTy" placeholder="Matchmaking Notes">
+            <label for="occupation">Occupation</label>
+            <input type="text" class="form-control" id="occupation" placeholder="Occupation">
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+          <div class="form-group">
+            <label for="company">Company</label>
+            <input type="text" class="form-control" id="company" placeholder="Company">
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+          <div class="form-group">
+            <label for="education">Education</label>
+            <input type="text" class="form-control" id="education" placeholder="Education">
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+          <div class="form-group">
+            <label for="religion">Religion</label>
+            <input type="text" class="form-control" id="religion" placeholder="Religion">
+          </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+          <div class="form-group">
+            <label for="religion">Religion</label>
+            <input type="text" class="form-control" id="religion" placeholder="Religion">
           </div>
         </div>
       </div>
