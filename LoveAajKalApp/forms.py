@@ -44,6 +44,7 @@ class MatchmakerForm(forms.ModelForm):
         fields = (
             'matched',
             'notes',
+            'matched_with',
         )
 
 class MatchActionForm(forms.ModelForm):

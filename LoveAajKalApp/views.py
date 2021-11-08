@@ -144,6 +144,7 @@ class ProfileDetailedView(generic.edit.FormMixin, generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super(ProfileDetailedView, self).get_context_data(**kwargs)
         # context['form'] = MatchmakerForm(initial={'notes': self.object})
+        context['unmatched_list'] = Profile.objects.filter(matched=False)
         context['form'] = self.get_form()
         return context
 
@@ -157,6 +158,11 @@ class ProfileDetailedView(generic.edit.FormMixin, generic.DetailView):
 
     def form_valid(self, form):
         self.object.notes = form.cleaned_data.get('notes')
+        match_profile = Profile.objects.filter(id=form.cleaned_data.get('matched_with'))[0]
+        self.object.matched_with = f'{match_profile.first_name} {match_profile.last_name}'
+        match_profile.matched_with = f'{self.object.first_name} {self.object.last_name}'
+        self.object.matched = True
+        match_profile.matched = True
         self.object.save()
         return super(ProfileDetailedView, self).form_valid(form)
     

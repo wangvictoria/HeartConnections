@@ -148,12 +148,16 @@
             <p>{{ profile.email }}</p>
           </div>
         </div>
-        <!--<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <h6 class="mb-2 text-primary"><strong>Matched</strong></h6>
+          <input type="checkbox" id="matched" name="matched" value="matched">
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
           <div class="form-group">
-            <label for="website"><strong>ID</strong></label>
-            <p>{{ profile.id }}</p>
+            <label for="website"><strong>Matched With</strong></label>
+            <p>{{ profile.matched_with }}</p>
           </div>
-        </div>-->
+        </div>
       </div>
       <div class="row gutters">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -164,8 +168,18 @@
         <form method="post">
         {% csrf_token %}
           <div class="form-group">
-            <button type="button" id="match" name="match" class="btn btn-primary" onclick="location.href='{% url 'match_action' %}'">Match</button><br><br>
-            <label for="notes">Notes</label>
+            <label for="matched_with">Matching</label>
+            {% if unmatched_list %}
+            <select id="matched_with" class="form-control" id="matched_with" name="matched_with">
+                <option value=""></option>
+              {% for profile in unmatched_list %}
+                <option value="{{ profile.id }}">{{ profile.first_name }} {{ profile.last_name }}, Notes: {{ profile.notes }}</option>
+              {% endfor %}
+            </select>
+            {% else %}
+              <p>There are no available profiles</p>
+            {% endif %}
+            <br><label for="notes">Notes</label>
             <textarea id="notes" class="form-control" name="notes" id="notes" rows="4" cols="50" placeholder="Matchmaking Notes">{{ profile.notes }}</textarea>
           </div>
         </div>
