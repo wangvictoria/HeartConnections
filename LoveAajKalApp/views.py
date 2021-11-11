@@ -14,6 +14,7 @@ from .models import Profile
 from django.core.mail import send_mail
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 def index(request):
@@ -119,13 +120,13 @@ def match_action(request):
 
     return render(request, 'match_action.html', context)
 
-class UnmatchedProfiles(generic.ListView):
+class UnmatchedProfiles(LoginRequiredMixin, generic.ListView):
     model = Profile
     context_object_name = 'unmatched_list'
     queryset = Profile.objects.filter(matched=False)
     template_name = 'unmatched_profiles.html'
 
-class MatchedProfiles(generic.ListView):
+class MatchedProfiles(LoginRequiredMixin, generic.ListView):
     model = Profile
     context_object_name = 'matched_list'
     queryset = Profile.objects.filter(matched=True)

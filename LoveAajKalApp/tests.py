@@ -221,14 +221,12 @@ class ProfileTest(TestCase):
 
     #### THESE TESTS REQUIRE HTML AND WILL NOT BE INCLUDED IN THE HOMEWORK 3 SUBMISSION ######
     def test_block_access_unmatched_profiles(self):
-        response = self.client.get(reverse('unmatched_profiles'), follow=True)
-        self.assertEquals(response.status_code, 200)
-       # self.assertRedirects(response, '/accounts/login/?next=/LoveAajKalApp/profile/unmatched/')
+       response = self.client.get(reverse('unmatched_profiles'), follow=True)
+       self.assertRedirects(response, '/accounts/login/?next=/LoveAajKalApp/profile/unmatched/')
     
     def test_block_access_matched_profiles(self):
         response = self.client.get(reverse('matched_profiles'))
-        self.assertEquals(response.status_code, 200)
-        #self.assertRedirects(response, '/accounts/login/?next=/LoveAajKalApp/profile/matched/')
+        self.assertRedirects(response, '/accounts/login/?next=/LoveAajKalApp/profile/matched/')
 
     def test_block_access_matchmaker(self):
         response = self.client.get(reverse('admin_index'))
