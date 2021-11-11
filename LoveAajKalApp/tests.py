@@ -220,7 +220,7 @@ class ProfileTest(TestCase):
     # site will access after that being the page the user attempted to access (if login is successful)
 
     #### THESE TESTS REQUIRE HTML AND WILL NOT BE INCLUDED IN THE HOMEWORK 3 SUBMISSION ######
-    '''def test_block_access_unmatched_profiles(self):
+    def test_block_access_unmatched_profiles(self):
         response = self.client.get(reverse('unmatched_profiles'))
         self.assertRedirects(response, '/accounts/login/?next=/LoveAajKalApp/profile/unmatched_profiles/')
     
@@ -230,7 +230,7 @@ class ProfileTest(TestCase):
 
     def test_block_access_matchmaker(self):
         response = self.client.get(reverse('admin_index'))
-        self.assertRedirects(response, '/accounts/login/?next=/LoveAajKalApp/matchmaker/')'''
+        self.assertRedirects(response, '/accounts/login/?next=/LoveAajKalApp/matchmaker/')
 
     # Check if the profile is invalid (Missing first name, which is required)
     def test_createInvalidProfile(self):
@@ -256,7 +256,7 @@ class ProfileTest(TestCase):
 # This class tests that the views in our views.py file are linked correctly
 # This class uses Python's dummy client to send GET and POST requests to our server without a browser
 ### THE FOLLOWING TESTS REQUIRE HTML AND WILL NOT BE INCLUDED IN THE HOMEWORK 3 SUBMISSION ######
-'''class SimpleViewsTest(TestCase):
+class SimpleViewsTest(TestCase):
     def setUp(self):
         # Every test needs a client.
         self.client = Client()
@@ -309,4 +309,4 @@ class ProfileTest(TestCase):
     def test_emailContactForm(self):
          response = self.client.post('/LoveAajKalApp/contact/', {'name': 'JOHN DOE', 'email': 'johndoe@gmail.com', 'message': 'TEST MESSAGE'}, follow=True)
          self.assertEquals(response.status_code, 200)
-         #self.assertTemplateUsed(response, 'contact.html')'''
+         self.assertTemplateUsed(response, 'contact.html')
