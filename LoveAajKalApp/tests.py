@@ -12,6 +12,7 @@ from .models import Profile as ProfileModel
 from .forms import ProfileForm
 from django.urls import reverse
 from django.test import override_settings
+import datetime
 
 # This is the video that shows unit tests in Django:
 # https://www.youtube.com/watch?v=DmRpNoQEx2o&ab_channel=GoDjango 
@@ -26,7 +27,7 @@ class ProfileTest(TestCase):
 
         profile.first_name = "John"
         profile.last_name = "Doe" 
-        profile.age = 25
+        profile.birthdate = datetime.date(1998, 8, 21)
         profile.gender = "Male"
         profile.sexuality = "Straight",
         profile.country = "USA"
@@ -57,10 +58,10 @@ class ProfileTest(TestCase):
         last_name = profile._meta.get_field('last_name').verbose_name
         self.assertEqual(last_name, 'last name')
     
-    def test_age(self):
+    def test_birthdate(self):
         profile = ProfileModel.objects.get(pk=1)
-        age = profile._meta.get_field('age').verbose_name
-        self.assertEqual(age, 'age')
+        birthdate = profile._meta.get_field('birthdate').verbose_name
+        self.assertEqual(birthdate, 'birthdate')
 
     def test_gender(self):
         profile = ProfileModel.objects.get(pk=1)
@@ -235,7 +236,7 @@ class ProfileTest(TestCase):
     # Check if the profile is invalid (Missing first name, which is required)
     def test_createInvalidProfile(self):
         form = ProfileForm(data= {"last_name" : "Doe",
-        "age" :25,
+        "birthdate" :25,
         "gender": "Male",
         "sexuality": "Straight",
         "country": "USA",

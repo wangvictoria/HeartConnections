@@ -7,9 +7,12 @@ Kristen Wright - kristen.v.wright@vanderbilt.edu
 Homework #3
 '''
 
+import datetime
+from datetime import date, timedelta
 from django.db import models
 from django.db.models.fields import BooleanField
 from django.urls import reverse
+from django.core.validators import MaxValueValidator, MinValueValidator 
 
 # Create your models here.
 # Remember to register model in admin.py
@@ -18,7 +21,7 @@ class Profile(models.Model):
     id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=40)
-    age = models.IntegerField()
+    birthdate = models.DateField(default=datetime.date(1900, 1, 1), validators=[MinValueValidator(datetime.date(1900, 1, 1)), MaxValueValidator(datetime.date.today() - datetime.timedelta(days=6575))])
     gender = models.CharField(max_length=20)
     sexuality = models.CharField(max_length=25)
     country = models.CharField(max_length=40)

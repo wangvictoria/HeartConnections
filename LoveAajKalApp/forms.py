@@ -9,6 +9,8 @@ Homework #3
 
 from django import forms
 from .models import Profile
+import datetime
+from datetime import date, timedelta
 
 # Create your forms here
 
@@ -19,7 +21,7 @@ class ProfileForm(forms.ModelForm):
             'id',
             'first_name',
             'last_name',
-            'age',
+            'birthdate',
             'gender', 
             'sexuality',
             'country',
@@ -37,6 +39,14 @@ class ProfileForm(forms.ModelForm):
             'email',)
             # Creating a form to add a profile.
             # form = ProfileForm()
+
+    def clean_birthdate(self):
+        data = self.cleaned_data["birthdate"]
+        if data < datetime.date(1900, 1, 1):
+            raise forms.ValidationError("Invalid birthdate: You were not born before 1900")
+        elif data > (datetime.date.today() - datetime.timedelta(days=6575)):
+            raise forms.ValidationError("Invalid birthdate: You are under 18 years old")
+        return data;            
 
 class MatchmakerForm(forms.ModelForm):
     class Meta:
