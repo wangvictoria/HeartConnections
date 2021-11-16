@@ -76,9 +76,9 @@ def contact(request):
         return render(request, 'contact.html', {})
 
 def CreateProfile(request):
-    form = ProfileForm(request.POST or None)
+    form = ProfileForm(request.POST, request.FILES or None)
     model = Profile
-    context = {'form': form}   
+    context = {'form': form}
     if request.method == 'POST':
         if form.is_valid():
             '''form.save()

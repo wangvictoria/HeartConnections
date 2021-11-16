@@ -36,7 +36,8 @@ class ProfileForm(forms.ModelForm):
             'dietary_preferences',
             'alcohol',
             'smoking',
-            'email',)
+            'email',
+            'profile_pic',)
             # Creating a form to add a profile.
             # form = ProfileForm()
 

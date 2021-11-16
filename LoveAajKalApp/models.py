@@ -42,6 +42,8 @@ class Profile(models.Model):
     matched_with = models.CharField(max_length=100, blank=True, null=True)
     notes = models.CharField(max_length=500, blank=True, null=True)
 
+    profile_pic = models.ImageField(null=True, blank=True)
+
 
     def get_absolute_url(self):
         # print(f"self.pk >>>>>>>>>>>>>>>>>>>>>>{self.pk}")

@@ -140,3 +140,6 @@ EMAIL_USE_SSL = False
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '../../LoveAajKalApp/matchmaker/'
+
+MEDIA_ROOT=os.path.join(BASE_DIR, 'static/images')
+MEDIA_URL = '/images/'
