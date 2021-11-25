@@ -25,6 +25,8 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     #path('profile/<int:pk>/', ProfileUpdateView.as_view(), name='profile_update'),
     #path('profile/<int:pk>/delete/', ProfileDeleteView.as_view(), name='profile_delete'),
+    ## Kastur's CSV Thing 
+    path('export/', views.export, name='export'),
 ]
 
 #Add Django site authentication urls (for login, logout, password management)
