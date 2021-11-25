@@ -39,6 +39,12 @@
             <div class="col-lg-12">
                 <div class="row">
                     <!-- ***** Features Small Item Start ***** --> <!-- {{ profile.get_absolute_url }} -->
+                    <!-- ***** ADDED BUTTON TO CONVERT TO CSV ***** -->
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="text-right">
+                            <button id="export" name="export" type="button" class="btn btn-secondary" onclick="location.href='{% url 'export' %}'">Export to CSV</button>
+                        </div>
+                    </div>
                     {% for profile in unmatched_list %}
                     <div class="col-lg-4 col-md-6 col-sm-6 col-12" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.2s">
                         <a href="{{ profile.get_absolute_url }}"><div class="features-small-item">
