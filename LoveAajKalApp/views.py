@@ -16,6 +16,11 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+# Kastur's Edit for CSV Stuff 
+import csv
+from django.shortcuts import render 
+from django.http import HttpResponse
+
 # Create your views here.
 def index(request):
     """View function for home page of site."""
@@ -166,7 +171,7 @@ class ProfileDetailedView(generic.edit.FormMixin, generic.DetailView):
         #match_profile.matched = True
         self.object.save()
         return super(ProfileDetailedView, self).form_valid(form)
-    
+
     # def form_valid(self, form):
     #     profile_instance = Profile.objects.filter(id=self.object.id)
     #     profile_instance.notes = form.cleaned_data.get('notes')
@@ -193,3 +198,28 @@ class ProfileDetailedView(generic.edit.FormMixin, generic.DetailView):
     #            'smoking': model.smoking}
 
     # return render(request, 'profile_detailed_view.html', context)
+
+# Kastur's CSV stuff 
+#   USING THIS: https://www.youtube.com/watch?v=lE8SXffJUmI
+def export(request):
+    response = HttpResponse(content_type = 'text/csv')
+    #   Response has a write method, so we can use the csv writer 
+    #   write the csv data directly into the response 
+
+    writer = csv.writer(response)
+    writer.writerow(['ID', 'First Name', 'Last Name', 'Birthdate', 
+                    'Gender', 'Sexuality', 'Country', 'State/Region',
+                    'City', 'Occupation', 'Company', 'Education', 'Bio', 
+                    'Religion', 'Hobbies', 'Diet', 'Alcohol', 'Smoking', 
+                    'Email', 'Matched', 'Matched With','Notes'])
+    
+    for profile in Profile.objects.all().values_list('id', 'first_name', 'last_name', 'birthdate',
+                                                    'gender','sexuality','country','state_region','city',
+                                                    'occupation','company','education','bio','religion',
+                                                    'hobbies','dietary_preferences','alcohol','smoking',
+                                                    'email','matched','matched_with','notes'):
+        writer.writerow(profile)
+    
+    response['Content-Dispotition'] = 'attachment; filename="profiles.csv"'
+
+    return response
