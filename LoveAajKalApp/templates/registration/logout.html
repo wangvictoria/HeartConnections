@@ -1,7 +1,47 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <p>Logged out!</p>
-  <a href="{% url 'login'%}">Click here to login again.</a>
-  <a href="{% url 'index'%}">Click here to return to the homepage.</a>
+<head>
+    {% load static %}
+    <!-- Additional CSS Files -->
+    <style>
+        .baseframe{
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover; 
+            height: 20vh;
+        }
+    </style>
+</head>
+<div class="baseframe"></div>
+<!-- ***** Features Big Item Start ***** -->
+<section class="section padding-top-70 padding-bottom-0" id="features">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-6 col-md-12 col-sm-12 align-self-center mobile-top-fix">
+                <div class="left-heading">
+                    <h2 class="section-title">Logged out!</h2>
+                </div>
+                <div class="left-text">
+                  <a href="{% url 'login'%}">Click here to login again.<br></a>
+                  <a href="{% url 'index'%}">Click here to return to the homepage.</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="hr"></div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ***** Features Big Item End ***** -->
+
+
 {% endblock %}

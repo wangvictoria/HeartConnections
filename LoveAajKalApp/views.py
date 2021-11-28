@@ -223,3 +223,7 @@ def export(request):
     response['Content-Dispotition'] = 'attachment; filename="profiles.csv"'
 
     return response
+
+def logout(request):
+    context = {}
+    return render(request, 'registration/logout.html', context)
