@@ -81,7 +81,7 @@ def contact(request):
         return render(request, 'contact.html', {})
 
 def CreateProfile(request):
-    form = ProfileForm(request.POST, request.FILES or None, user = request.user)
+    form = ProfileForm(request.POST, request.FILES or None)
     model = Profile
     context = {'form': form}
     if request.method == 'POST':
@@ -100,7 +100,7 @@ def CreateProfile(request):
             #test = form.cleaned_data['first_name']
             return redirect('create_profile_success')
         else:
-            form = ProfileForm(request.POST or None, user = request.user)
+            form = ProfileForm(request.POST or None)
     
     return render(request, 'create_profile.html', context)
 

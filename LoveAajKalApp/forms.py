@@ -46,10 +46,6 @@ class ProfileForm(forms.ModelForm):
             },
         }
 
-    def __init__(self, *args, **kwargs):
-      self.user = kwargs.pop('user')  # cache the user object you pass in
-      super(ProfileForm, self).__init__(*args, **kwargs)  # and carry on to init the form
-
     def clean_birthdate(self):
         data = self.cleaned_data["birthdate"]
         if data < datetime.date(1900, 1, 1):

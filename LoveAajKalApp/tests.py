@@ -236,7 +236,7 @@ class ProfileTest(TestCase):
     # Check if the profile is invalid (Missing first name, which is required)
     def test_createInvalidProfile(self):
         form = ProfileForm(data= {"last_name" : "Doe",
-        "birthdate" :25,
+        "birthdate" : datetime.date(1998, 8, 21),
         "gender": "Male",
         "sexuality": "Straight",
         "country": "USA",
