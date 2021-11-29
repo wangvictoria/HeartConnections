@@ -11,6 +11,7 @@ from django import forms
 from .models import Profile
 import datetime
 from datetime import date, timedelta
+from django.utils.translation import gettext_lazy as _
 
 # Create your forms here
 
@@ -37,9 +38,17 @@ class ProfileForm(forms.ModelForm):
             'alcohol',
             'smoking',
             'email',
-            'profile_pic',)
-            # Creating a form to add a profile.
-            # form = ProfileForm()
+            'profile_pic')
+
+        error_messages = {
+            'birthdate': {
+                'required': _(""),
+            },
+        }
+
+    def __init__(self, *args, **kwargs):
+      self.user = kwargs.pop('user')  # cache the user object you pass in
+      super(ProfileForm, self).__init__(*args, **kwargs)  # and carry on to init the form
 
     def clean_birthdate(self):
         data = self.cleaned_data["birthdate"]
