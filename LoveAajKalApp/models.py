@@ -17,6 +17,8 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 # Create your models here.
 # Remember to register model in admin.py
 
+
+"""A model representing the profile class and declaring all its variables"""
 class Profile(models.Model):
     id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=30)
@@ -45,12 +47,12 @@ class Profile(models.Model):
     profile_pic = models.ImageField(null=True, blank=True)
 
 
+    """Returns a URL pointing to a specific profile"""
     def get_absolute_url(self):
-        # print(f"self.pk >>>>>>>>>>>>>>>>>>>>>>{self.pk}")
         return reverse('profile_detailed_view', kwargs={'pk': self.pk})
-        #return ('profile_detailed_view', (), {'id': self.id})
-        #return reverse('profile_detailed_view', args=[str(self.id)])
 
+
+    """Converts the profile into a string form"""
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
     

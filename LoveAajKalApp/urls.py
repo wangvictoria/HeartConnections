@@ -11,6 +11,7 @@ from django.urls import path, include, re_path
 from . import views
 #from .views import UnmatchedProfiles
 
+"""The urls used in the website, their aliases, and which view they point to"""
 urlpatterns = [
     path('', views.index, name='index'),
     path('matchmaker/', views.admin_index, name='admin_index'),
@@ -22,14 +23,10 @@ urlpatterns = [
     path('profile/match_action/', views.match_action, name='match_action'),
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
-    #path('profile/<int:pk>/', ProfileUpdateView.as_view(), name='profile_update'),
-    #path('profile/<int:pk>/delete/', ProfileDeleteView.as_view(), name='profile_delete'),
-    ## Kastur's CSV Thing 
     path('export/', views.export, name='export'),
     path('logout/', views.logout, name='override_logout')
 ]
 
-#Add Django site authentication urls (for login, logout, password management)
 
 urlpatterns += [
     path('accounts/', include('django.contrib.auth.urls')),

@@ -285,12 +285,10 @@ class SimpleViewsTest(TestCase):
     def test_ProfileUnmatchedPage(self):
         response = self.client.get('/LoveAajKalApp/profile/unmatched/', follow=True)
         self.assertEquals(response.status_code, 200)
-      #  self.assertTemplateUsed(response,'registration/login.html')
 
     def test_ProfileMatchedPage(self):
         response = self.client.get('/LoveAajKalApp/profile/matched/', follow=True)
         self.assertEquals(response.status_code, 200)
-        # self.assertTemplateUsed(response,'registration/login.html')
 
     def test_ContactPage(self):
         response = self.client.get('/LoveAajKalApp/contact/', follow=True)

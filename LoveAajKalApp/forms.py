@@ -15,6 +15,7 @@ from django.utils.translation import gettext_lazy as _
 
 # Create your forms here
 
+"""The main form for a user to create a profile"""
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
@@ -46,6 +47,8 @@ class ProfileForm(forms.ModelForm):
             },
         }
 
+
+    """Checks the "birthdate" field to ensure that the user is not too young or older than anyone in the world"""
     def clean_birthdate(self):
         data = self.cleaned_data["birthdate"]
         if data < datetime.date(1900, 1, 1):
@@ -54,6 +57,8 @@ class ProfileForm(forms.ModelForm):
             raise forms.ValidationError("Invalid birthdate: You are under 18 years old")
         return data;            
 
+
+"""The form used by Reshma to matchmake"""
 class MatchmakerForm(forms.ModelForm):
     class Meta:
         model = Profile
@@ -63,6 +68,8 @@ class MatchmakerForm(forms.ModelForm):
             'matched_with',
         )
 
+
+"""The form used by Reshma when actually making a match"""
 class MatchActionForm(forms.ModelForm):
     class Meta:
         model = Profile
