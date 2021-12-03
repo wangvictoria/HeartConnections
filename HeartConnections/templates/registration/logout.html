@@ -18,7 +18,7 @@
         }
     </style>
 </head>
-<div class="baseframe"></div>
+<div class="baseframe"><h1>Logged Out</h1></div><br><br>
 
 <!-- ***** Features Small Start ***** -->
 <section class="section home-feature">
@@ -29,20 +29,9 @@
                     <!-- ***** Features Small Item Start ***** -->
                     <div class="col-lg-4 col-md-6 col-sm-6 col-12" style="margin: 0 auto" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.2s">
                         <div class="features-small-item">
-                            <div class="left-heading">
-                                <h2 class="section-title">Logged out!</h2>
-                            </div>
-                            <table>
-                                <tr>
-                                  <td style="text-align: left;"><a href="{% url 'login'%}">Click here to login again.</a></td>
-                                </tr>
-                                <tr>
-                                  <td style="text-align: left;"><a href="{% url 'index'%}">Click here to return to the homepage.</a></td>
-                                </tr>
-                            </table>
-                            
-                            
-  
+                            You have been logged out!<br><br>
+                            <a href="{% url 'login' %}">Login</a><br>
+                            <a href="{% url 'index' %}">Homepage</a><br>
                         </div>
                     </div>
                     <!-- ***** Features Small Item End ***** -->
@@ -58,6 +47,7 @@
         
   
 
+</div>
 </div>
 
 {% endblock %}
