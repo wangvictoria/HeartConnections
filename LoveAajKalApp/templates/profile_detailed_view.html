@@ -151,8 +151,10 @@
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
           <div class="form-group">
             <h6 class="mb-2 text-primary"><strong>Matched With</strong></h6>
-            {% if matched_with_id %}
-            <p>{{ matched_with_first }} {{ matched_with_last }}</p>
+            {% if match_list %}
+            {% for match in match_list %}
+            <p>{{ match.first_name }} {{ match.last_name }}</p>
+            {% endfor %}
             {% else %}
             <p>None</p>
             {% endif %}
@@ -171,8 +173,10 @@
             <label for="matched_with">Matching</label>
             {% if available_list %}
             <select id="matched_with" class="form-control" id="matched_with" name="matched_with">
-              {% if matched_with_id %}
-                <option value="{{ matched_with_id }}">{{ matched_with_first }} {{ matched_with_last }}, Notes: {{ matched_with_notes }}</option>
+              {% if match_list %}
+              {% for match in match_list %}
+                <option value="{{ match.id }}">{{ match.first_name }} {{ match.last_name }}, Notes: {{ match.notes }}</option>
+              {% endfor %}
               {% else %}
                 <option value="none"></option>
               {% endif %}
