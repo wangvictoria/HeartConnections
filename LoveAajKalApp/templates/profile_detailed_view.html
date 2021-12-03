@@ -148,14 +148,14 @@
             <p>{{ profile.email }}</p>
           </div>
         </div>
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-          <h6 class="mb-2 text-primary"><strong>Matched</strong></h6>
-          <input type="checkbox" id="matched" name="matched" value="matched">
-        </div>
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
           <div class="form-group">
-            <label for="website"><strong>Matched With</strong></label>
-            <p>{{ profile.matched_with }}</p>
+            <h6 class="mb-2 text-primary"><strong>Matched With</strong></h6>
+            {% if matched_with_id %}
+            <p>{{ matched_with_first }} {{ matched_with_last }}</p>
+            {% else %}
+            <p>None</p>
+            {% endif %}
           </div>
         </div>
       </div>
@@ -169,10 +169,14 @@
         {% csrf_token %}
           <div class="form-group">
             <label for="matched_with">Matching</label>
-            {% if unmatched_list %}
+            {% if available_list %}
             <select id="matched_with" class="form-control" id="matched_with" name="matched_with">
-                <option value=""></option>
-              {% for profile in unmatched_list %}
+              {% if matched_with_id %}
+                <option value="{{ matched_with_id }}">{{ matched_with_first }} {{ matched_with_last }}, Notes: {{ matched_with_notes }}</option>
+              {% else %}
+                <option value="none"></option>
+              {% endif %}
+              {% for profile in available_list %}
                 <option value="{{ profile.id }}">{{ profile.first_name }} {{ profile.last_name }}, Notes: {{ profile.notes }}</option>
               {% endfor %}
             </select>
@@ -186,10 +190,10 @@
       </div>
       <div class="row gutters">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-          <div class="text-right">
-            <button type="button" id="submit" name="submit" class="btn btn-secondary" onclick="location.href='{% url 'unmatched_profiles' %}'">Cancel</button>
-            <button type="submit" id="submit" name="submit" class="btn btn-primary">Update</button>
-          </div>
+          <button type="submit" id="submit" name="submit" class="btn btn-primary" style="float: right;">Update</button>
+          <p style="float: right; color:white;">.</p>
+          <button type="button" id="submit" name="submit" class="btn btn-secondary" style="float: right;" onclick="location.href='{% url 'admin_index' %}'">Cancel</button>
+          <button type="delete" id="delete" name="delete" class="btn btn-danger">Delete Profile</button>
         </div>
       </div>
     </div>

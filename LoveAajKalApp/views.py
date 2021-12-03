@@ -16,7 +16,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-# Kastur's Edit for CSV Stuff 
+# Kastur's Edit for CSV Stuff -- referenced Youtube video (line 195 has the link)
 import csv
 from django.shortcuts import render 
 from django.http import HttpResponse
@@ -67,6 +67,10 @@ def contact(request):
     else:
         return render(request, 'contact.html', {})
 
+def delete_profile(request, pk):
+    #From Stackoverflow
+    Profile.objects.filter(id=pk).delete()
+    return render(request, 'admin_index.html', {})
 
 """View function for profile creation page"""
 def CreateProfile(request):
@@ -148,13 +152,24 @@ class ProfileDetailedView(generic.edit.FormMixin, generic.DetailView):
     template_name = 'profile_detailed_view.html'
 
     def get_success_url(self):
-        return reverse('profile_detailed_view', kwargs={'pk': self.object.id})
+        if 'delete' in self.request.POST:
+            id = self.object.id
+            Profile.objects.filter(id=id).delete()
+            return reverse('admin_index')
+        else:
+            return reverse('profile_detailed_view', kwargs={'pk': self.object.id})
 
     def get_context_data(self, **kwargs):
         context = super(ProfileDetailedView, self).get_context_data(**kwargs)
         # context['form'] = MatchmakerForm(initial={'notes': self.object})
         context['unmatched_list'] = Profile.objects.filter(matched=False)
+        context['available_list'] = Profile.objects.filter(matched=False).exclude(id=self.object.id)
         context['form'] = self.get_form()
+        if self.object.matched:
+            context['matched_with_id'] = self.object.matched_with
+            context['matched_with_first'] = Profile.objects.filter(id=self.object.matched_with)[0].first_name
+            context['matched_with_last'] = Profile.objects.filter(id=self.object.matched_with)[0].last_name
+            context['matched_with_notes'] = Profile.objects.filter(id=self.object.matched_with)[0].notes
         return context
 
     def post(self, request, *args, **kwargs):
@@ -167,12 +182,20 @@ class ProfileDetailedView(generic.edit.FormMixin, generic.DetailView):
 
     def form_valid(self, form):
         self.object.notes = form.cleaned_data.get('notes')
-        #match_profile = Profile.objects.filter(id=form.cleaned_data.get('matched_with'))[0]
-        #self.object.matched_with = f'{match_profile.first_name} {match_profile.last_name}'
+        if form.cleaned_data.get('matched_with') != "none":
+            match_profile = Profile.objects.filter(id=form.cleaned_data.get('matched_with'))[0]
+            self.object.matched_with = match_profile.id
+            match_profile.matched_with = self.object.id
+            self.object.matched = True
+            match_profile.matched = True
+            match_profile.save()
+        # self.object.matched_with = f'{match_profile.first_name} {match_profile.last_name}'
         #match_profile.matched_with = f'{self.object.first_name} {self.object.last_name}'
         #self.object.matched = True
         #match_profile.matched = True
         self.object.save()
+        if 'delete' in self.request.POST:
+            self.object.delete()
         return super(ProfileDetailedView, self).form_valid(form)
 
 
