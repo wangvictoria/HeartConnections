@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # Add our new application
-    'LoveAajKalApp.apps.LoveaajkalappConfig', #This object was created for us in /LoveAajKalApp/apps.py
+    'HeartConnections.apps.HeartconnectionsConfig', #This object was created for us in /HeartConnections/apps.py
 ]
 
 MIDDLEWARE = [
@@ -139,7 +139,7 @@ EMAIL_USE_TLS = False
 EMAIL_USE_SSL = False
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
-LOGIN_REDIRECT_URL = '../../LoveAajKalApp/matchmaker/'
+LOGIN_REDIRECT_URL = '../../HeartConnections/matchmaker/'
 
 MEDIA_ROOT=os.path.join(BASE_DIR, 'static/images')
 MEDIA_URL = '/images/'

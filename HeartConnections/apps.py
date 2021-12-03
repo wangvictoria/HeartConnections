@@ -10,6 +10,6 @@ Homework #3
 from django.apps import AppConfig
 
 
-class LoveaajkalappConfig(AppConfig):
+class HeartconnectionsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'LoveAajKalApp'
+    name = 'HeartConnections'

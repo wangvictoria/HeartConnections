@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-# Use include() to add paths from the LoveAajKalApp application
+# Use include() to add paths from the HeartConnections application
 from django.urls import include
 #Add URL maps to redirect the base URL to our application
 from django.views.generic import RedirectView
@@ -25,9 +25,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('LoveAajKalApp/', include('LoveAajKalApp.urls')),
+    path('HeartConnections/', include('HeartConnections.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('', RedirectView.as_view(url='LoveAajKalApp/', permanent=True)),
+    path('', RedirectView.as_view(url='HeartConnections/', permanent=True)),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

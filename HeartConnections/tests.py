@@ -223,15 +223,15 @@ class ProfileTest(TestCase):
     #### THESE TESTS REQUIRE HTML AND WILL NOT BE INCLUDED IN THE HOMEWORK 3 SUBMISSION ######
     def test_block_access_unmatched_profiles(self):
        response = self.client.get(reverse('unmatched_profiles'), follow=True)
-       self.assertRedirects(response, '/accounts/login/?next=/LoveAajKalApp/profile/unmatched/')
+       self.assertRedirects(response, '/accounts/login/?next=/HeartConnections/profile/unmatched/')
     
     def test_block_access_matched_profiles(self):
         response = self.client.get(reverse('matched_profiles'))
-        self.assertRedirects(response, '/accounts/login/?next=/LoveAajKalApp/profile/matched/')
+        self.assertRedirects(response, '/accounts/login/?next=/HeartConnections/profile/matched/')
 
     def test_block_access_matchmaker(self):
         response = self.client.get(reverse('admin_index'))
-        self.assertRedirects(response, '/accounts/login/?next=/LoveAajKalApp/matchmaker/')
+        self.assertRedirects(response, '/accounts/login/?next=/HeartConnections/matchmaker/')
 
     # Check if the profile is invalid (Missing first name, which is required)
     def test_createInvalidProfile(self):
@@ -268,30 +268,30 @@ class SimpleViewsTest(TestCase):
         self.assertTemplateUsed(response, 'index.html')
 
     def test_AboutPage(self):
-        response = self.client.get('/LoveAajKalApp/about/', follow=True)
+        response = self.client.get('/HeartConnections/about/', follow=True)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'about.html')
 
     def test_ProfileCreatePage(self):
-        response = self.client.get('/LoveAajKalApp/profile/create/', follow=True)
+        response = self.client.get('/HeartConnections/profile/create/', follow=True)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'create_profile.html')
 
     '''def test_ProfileViewPage(self):
-        response = self.client.get('/LoveAajKalApp/profile/<int:pk>/', follow=True)
+        response = self.client.get('/HeartConnections/profile/<int:pk>/', follow=True)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'profile_detailed_view.html')'''
 
     def test_ProfileUnmatchedPage(self):
-        response = self.client.get('/LoveAajKalApp/profile/unmatched/', follow=True)
+        response = self.client.get('/HeartConnections/profile/unmatched/', follow=True)
         self.assertEquals(response.status_code, 200)
 
     def test_ProfileMatchedPage(self):
-        response = self.client.get('/LoveAajKalApp/profile/matched/', follow=True)
+        response = self.client.get('/HeartConnections/profile/matched/', follow=True)
         self.assertEquals(response.status_code, 200)
 
     def test_ContactPage(self):
-        response = self.client.get('/LoveAajKalApp/contact/', follow=True)
+        response = self.client.get('/HeartConnections/contact/', follow=True)
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'contact.html')
 
@@ -306,6 +306,6 @@ class SimpleViewsTest(TestCase):
     # The email should be delivered in the terminal
     '''@override_settings(EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend')
     def test_emailContactForm(self):
-         response = self.client.post('/LoveAajKalApp/contact/', {'name': 'JOHN DOE', 'email': 'johndoe@gmail.com', 'message': 'TEST MESSAGE'}, follow=True)
+         response = self.client.post('/HeartConnections/contact/', {'name': 'JOHN DOE', 'email': 'johndoe@gmail.com', 'message': 'TEST MESSAGE'}, follow=True)
          self.assertEquals(response.status_code, 200)
          self.assertTemplateUsed(response, 'contact.html')'''
