@@ -187,6 +187,8 @@
             {% else %}
               <p>There are no available profiles</p>
             {% endif %}
+            <br>
+            <button type="unmatch" id="unmatch" name="unmatch" class="btn btn-warning">Unmatch</button><br>
             <br><label for="notes">Notes</label>
             <textarea id="notes" class="form-control" name="notes" id="notes" rows="4" cols="50" placeholder="Matchmaking Notes">{{ profile.notes }}</textarea>
           </div>

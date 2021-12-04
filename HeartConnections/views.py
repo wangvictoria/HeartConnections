@@ -211,6 +211,15 @@ class ProfileDetailedView(generic.edit.FormMixin, generic.DetailView):
         self.object.save()
         if 'delete' in self.request.POST:
             self.object.delete()
+        if 'unmatch' in self.request.POST:
+            match_profile = Profile.objects.filter(id=form.cleaned_data.get('matched_with'))[0]
+            # CANNOT INITIALIZE HERE
+            self.object.matched_with = ""
+            match_profile.matched_with = ""
+            self.object.matched = False
+            match_profile.matched = False
+            match_profile.save()
+            self.object.save()
         return super(ProfileDetailedView, self).form_valid(form)
 
 
