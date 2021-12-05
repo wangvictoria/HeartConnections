@@ -153,6 +153,13 @@ class ProfileDetailedView(generic.edit.FormMixin, generic.DetailView):
 
     def get_success_url(self):
         if 'delete' in self.request.POST:
+            # If there was a previous person matched with, remove the match
+            if self.object.matched_with != "":
+                previous_match = Profile.objects.filter(id=int(self.object.matched_with))[0]
+                previous_match.matched_with = ""
+                previous_match.matched = False
+                previous_match.save()
+                
             id = self.object.id
             Profile.objects.filter(id=id).delete()
             return reverse('admin_index')
@@ -167,10 +174,7 @@ class ProfileDetailedView(generic.edit.FormMixin, generic.DetailView):
         context['form'] = self.get_form()
         if self.object.matched:
             match_list = self.object.matched_with.strip().split(" ")
-            print("MATCH >>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-            print(match_list)
             context['match_list'] = Profile.objects.filter(id__in=match_list)
-            print(Profile.objects.filter(id__in=match_list))
             # q = Profile()
             # for match in matched_with_list:
             #     q = q | Profile(id=match)
@@ -193,14 +197,19 @@ class ProfileDetailedView(generic.edit.FormMixin, generic.DetailView):
         self.object.notes = form.cleaned_data.get('notes')
         if form.cleaned_data.get('matched_with') != "none":
             match_profile = Profile.objects.filter(id=form.cleaned_data.get('matched_with'))[0]
-            # CANNOT INITIALIZE HERE
+
+            # If there was a previous person matched with, remove the match
+            if self.object.matched_with != "":
+                previous_match = Profile.objects.filter(id=int(self.object.matched_with))[0]
+                previous_match.matched_with = ""
+                previous_match.matched = False
+                previous_match.save()
+
+            # Match the two profiles
             self.object.matched_with = ""
             match_profile.matched_with = ""
-            # NOT ADDING TO STRING BECAUSE IT IS REINITIALIZED EVERY TIME
             self.object.matched_with += str(match_profile.id) + " "
             match_profile.matched_with += str(self.object.id) + " "
-            print("FORM >>>>>>>>>>>>>>>>>>>>")
-            print(self.object.matched_with)
             self.object.matched = True
             match_profile.matched = True
             match_profile.save()
