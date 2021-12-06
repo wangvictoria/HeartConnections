@@ -131,12 +131,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Email settings
 # to test email run this command in virtual environment:
 # python3 -m smtpd -n -c DebuggingServer localhost:1025
-EMAIL_HOST = 'localhost' #change to actual email server when in production
-EMAIL_PORT = '1025' #change to email server port # when in production
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = ''
-EMAIL_USE_TLS = False
-EMAIL_USE_SSL = False
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com' #gmail server
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587 #gmail port
+EMAIL_HOST_USER = 'heartconnections12@gmail.com' #we can create an gmail account for heart connections
+EMAIL_HOST_PASSWORD = 'reshmaharithsa12' #and have it send emails to Reshma so reshma won't have to put in her account info here
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '../../HeartConnections/matchmaker/'

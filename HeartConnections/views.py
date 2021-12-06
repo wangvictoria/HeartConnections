@@ -57,10 +57,10 @@ def contact(request):
 
         # send email
         send_mail(
-            'message from ' + message_name,  # subject
+             'Message From: ' + message_name + ' Email: ' + message_email,  # subject
             message,  # message
             message_email,  # from email
-            ['kristen.v.wright@vanderbilt.edu']  # To Email
+            ['reshmaharithsa@gmail.com']  # To Email
         )
         return render(request, 'contact.html', {'message_name': message_name})
 
