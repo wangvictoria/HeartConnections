@@ -153,12 +153,6 @@ class ProfileDetailedView(generic.edit.FormMixin, generic.DetailView):
 
     def get_success_url(self):
         if 'delete' in self.request.POST:
-            # If there was a previous person matched with, remove the match
-            if self.object.matched_with != "":
-                previous_match = Profile.objects.filter(id=int(self.object.matched_with))[0]
-                previous_match.matched_with = ""
-                previous_match.matched = False
-                previous_match.save()
                 
             id = self.object.id
             Profile.objects.filter(id=id).delete()
@@ -199,7 +193,8 @@ class ProfileDetailedView(generic.edit.FormMixin, generic.DetailView):
             match_profile = Profile.objects.filter(id=form.cleaned_data.get('matched_with'))[0]
 
             # If there was a previous person matched with, remove the match
-            if self.object.matched_with != "":
+
+            if self.object.matched:
                 previous_match = Profile.objects.filter(id=int(self.object.matched_with))[0]
                 previous_match.matched_with = ""
                 previous_match.matched = False
@@ -219,6 +214,13 @@ class ProfileDetailedView(generic.edit.FormMixin, generic.DetailView):
         #match_profile.matched = True
         self.object.save()
         if 'delete' in self.request.POST:
+            # If there was a previous person matched with, remove the match
+            if self.object.matched:
+                previous_match = Profile.objects.filter(id=int(self.object.matched_with))[0]
+                previous_match.matched_with = ""
+                previous_match.matched = False
+                previous_match.save()
+                
             self.object.delete()
         if 'unmatch' in self.request.POST:
             match_profile = Profile.objects.filter(id=form.cleaned_data.get('matched_with'))[0]
